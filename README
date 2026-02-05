@@ -1,0 +1,74 @@
+# Proxy Change
+
+一个基于 PySide6 的简单 Windows 代理切换工具。
+
+## 功能
+
+- 一键开启/关闭系统代理
+- 快速设置代理服务器 IP 和端口
+- 支持系统托盘运行
+- 响应式 UI 设计
+
+## 开发命令
+
+### 1. 环境准备
+
+建议使用 Python 3.10+ 环境。
+
+```bash
+# 创建虚拟环境
+python -m venv venv
+
+# 激活虚拟环境 (Windows)
+.\venv\Scripts\activate
+
+# 安装依赖
+pip install PySide6
+```
+
+### 2. 运行项目
+
+```bash
+python main.py
+```
+
+## 打包命令
+
+为了确保所有依赖（如 PySide6）都被正确打包，**必须**在激活虚拟环境后运行打包命令：
+
+```bash
+# 激活并安装打包工具
+.\venv\Scripts\activate
+pip install pyinstaller
+
+# 执行打包
+pyinstaller --noconsole --onefile --add-data "logo.ico;." --add-data "close.svg;." --add-data "github.svg;." --icon="logo.ico" --name "ProxyChange" main.py
+```
+
+打包完成后，可在 `dist` 目录下找到 `ProxyChange.exe`。
+
+## 常见问题
+
+### 1. pip 安装失败 (SSL 错误/网络超时)
+
+由于网络环境问题，安装依赖时可能会遇到 SSL 错误。可以使用国内镜像源并跳过 SSL 验证：
+
+```bash
+pip install PySide6 pyinstaller -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+```
+
+### 3. "Fatal error in launcher" 错误
+    
+如果遇到类似 `Unable to create process using...` 的错误，通常是因为虚拟环境被移动导致路径失效。解决方法：
+- **方案 A (推荐)**：使用 `python -m` 调用工具（跳过 launcher）：
+  ```bash
+  python -m pip install ...
+  python -m PyInstaller ...
+  ```
+- **方案 B**：重建虚拟环境：
+  ```bash
+  rmdir /s /q venv
+  python -m venv venv
+  .\venv\Scripts\activate
+  pip install PySide6 pyinstaller
+  ```
