@@ -2,6 +2,12 @@
 
 基于 PySide6 的 Windows 代理切换工具：一键开关系统代理、设置代理地址与端口，支持系统托盘。
 
+## 效果预览
+
+![Proxy Change 界面预览](img/README/image.png)
+
+**功能概览：** 一键开启/关闭系统代理 · 设置代理 IP 与端口 · 系统托盘常驻 · 响应式界面
+
 ## 开发与打包流程
 
 ### 开发流程
@@ -56,8 +62,8 @@ pip install PySide6 pyinstaller -i http://mirrors.aliyun.com/pypi/simple/ --trus
   `python -m pip install ...`、`python -m PyInstaller ...`  
   或删除 `venv` 后重新 `python -m venv venv` 并重装依赖。
 
-- **CI / GitHub Actions 打包**  
-  见仓库 `.github/workflows` 下的工作流，在 Windows 下自动安装依赖并执行上述 PyInstaller 命令，并上传 `ProxyChange.exe` 为 Artifact。
+- **CI / GitHub Actions**  
+  推送到 `main`/`master` 会在 Actions 中构建并产出 Artifact；**推送 tag（如 `v1.0.0`）** 会自动构建并发布到 [Releases](releases)，可直接下载 `ProxyChange.exe`。
 
 ## 许可证
 
